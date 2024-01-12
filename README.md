@@ -15,12 +15,31 @@ Matrix: [Matrix_arabidopsis_2023](https://raw.githubusercontent.com/jmvillalobos
 
 In this protocol, we will be working with a dataset from Agave sisalana, obtained from a study by Sarwar et al., 2019, where they investigated drought tolerance in this plant. Using these data, we will perform de novo assembly and differential expression analysis. Trinity will be used as the assembler, and DESeq2 will be employed for the differential expression analysis (Haas et al., 2013; Love et al., 2014). To execute this protocol on our personal computer, we have trimmed the original data to only 10,000 reads.
 
-The dataset cited in Pola-Sánchez et al., 2024, for performing the De Novo assembly can be downloaded from this repository:
+The dataset cited in Pola-Sánchez et al., 2024, for performing the De Novo assembly can be downloaded from this repository:  
 
-Sample 1:  
+  
+
+Library 1:  
    FastqR1: https://github.com/jmvillalobos/RNA-seq-protocol/tree/main#:~:text=Tra_SRR5137658_1_P.fastq.gz  
    FastqR2: https://github.com/jmvillalobos/RNA-seq-protocol/tree/main#:~:text=Tra_SRR5137658_2_P.fastq.gz  
 
-Sample 2:
-   FastqR1:  
-   FastqR2:
+Library 2:
+   FastqR1: https://github.com/jmvillalobos/RNA-seq-protocol/tree/main#:~:text=Tra_SRR5137660_1_P.fastq.gz  
+   FastqR2: https://github.com/jmvillalobos/RNA-seq-protocol/tree/main#:~:text=Tra_SRR5137660_2_P.fastq.gz  
+
+Library 3:    
+   FastqR1: https://github.com/jmvillalobos/RNA-seq-protocol/tree/main#:~:text=Tra_SRR5137663_1_P.fastq.gz  
+   FastqR2: https://github.com/jmvillalobos/RNA-seq-protocol/tree/main#:~:text=Tra_SRR5137663_2_P.fastq.gz  
+
+Library 4:   
+   FastqR1: https://github.com/jmvillalobos/RNA-seq-protocol/tree/main#:~:text=Con_SRR5137659_1_P.fastq.gz  
+   FastqR2: https://github.com/jmvillalobos/RNA-seq-protocol/tree/main#:~:text=Con_SRR5137659_2_P.fastq.gz  
+
+Library 5:   
+   FastqR1: https://github.com/jmvillalobos/RNA-seq-protocol/tree/main#:~:text=Con_SRR5137661_1_P.fastq.gz  
+   FastqR2: https://github.com/jmvillalobos/RNA-seq-protocol/tree/main#:~:text=Con_SRR5137661_2_P.fastq.gz  
+
+Library 6:  
+   FastqR1: https://github.com/jmvillalobos/RNA-seq-protocol/tree/main#:~:text=Con_SRR5137662_1_P.fastq.gz  
+   FastqR2: https://github.com/jmvillalobos/RNA-seq-protocol/tree/main#:~:text=Con_SRR5137662_2_P.fastq.gz  
+   
