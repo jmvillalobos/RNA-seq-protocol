@@ -20,3 +20,7 @@ The dataset cited in Pola-Sánchez et al., 2024, for performing the De Novo asse
 Sample 1:  
    FastqR1: https://github.com/jmvillalobos/RNA-seq-protocol/tree/main#:~:text=Tra_SRR5137658_1_P.fastq.gz  
    FastqR2: https://github.com/jmvillalobos/RNA-seq-protocol/tree/main#:~:text=Tra_SRR5137658_2_P.fastq.gz  
+
+Sample 2:
+   FastqR1:  
+   FastqR2:
