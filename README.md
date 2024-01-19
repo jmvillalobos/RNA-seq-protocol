@@ -9,7 +9,7 @@ In the 7th step of the protocol outlined in Current Protocols, we provide detail
 Matrix: [Matrix_arabidopsis_2023](https://raw.githubusercontent.com/jmvillalobos/RNA-seq-protocol/main/matriz_arabidopsis_2023.txt)
 
 
-## Protocol 2
+## Protocol 3
 
 ### De novo assembly of non-model plant
 
