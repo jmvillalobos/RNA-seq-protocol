@@ -75,7 +75,7 @@ dds
 res <- results(dds)
 res
 
-# Summary of Differential Gene Expression
+#Summary of Differential Gene Expression
 summary(res)
 
 #Sorting the Summary List by Adjusted p-adj
