@@ -29,6 +29,8 @@ BiocManager::install("EnhancedVolcano")
 install.packages("pheatmap")
 
 
+
+
 #b. Loading the library for DEG
 library(DESeq2)
 #Loading the library for plots
@@ -37,6 +39,9 @@ library("ggplot2")
 library("EnhancedVolcano")
 #Loading the library for heatmap
 library("pheatmap")
+
+
+
 
 #c.Setting the Path to the featureCounts Count Matrix
 setwd("C:/project_2023/quantification_featureCounts")
@@ -48,6 +53,9 @@ list.files()
 countData <- read.delim("./matriz_arabidopsis_2023.txt", header = TRUE, row.names = 1)
 head(countData)
 
+
+
+
 #d. Description of Samples
 condition <- factor(c("Control", "Control", "Control", "Treatment", "Treatment", "Treatment"))
 colData <- data.frame(row.names = colnames(countData), condition)
@@ -57,9 +65,13 @@ head(colData)
 dds <- DESeqDataSetFromMatrix(countData = countData, colData = colData, design = ~ condition)
 dds
 
+
+
+
 #e. Generating a PCA Plot
 rld <- rlog(dds, blind = F)
 plotPCA(rld, intgroup = "condition") + geom_text(aes(label=name),
+
                                                  vjust=0.2)
 
 
@@ -83,6 +95,8 @@ res <- res[order(res$padj), ]
 head(res)
 
 
+
+
 #g. Extracting Contrasts between Conditions
 Treatment_vs_Control <- results(dds, contrast = c("condition", "Treatment", "Control"))
 summary(Treatment_vs_Control)
@@ -91,6 +105,8 @@ summary(Treatment_vs_Control)
 deg <- subset(Treatment_vs_Control, padj < 0.05 & abs(log2FoldChange) > 1)
 print(deg)
 summary(deg)
+
+
 
 
 #h. Exporting the DEG Table
@@ -170,6 +186,8 @@ install.packages("tidyverse")
 BiocManager::install("enrichplot")
 
 
+
+
 #b.Load required libraries
 library("biomartr")
 library("clusterProfiler")
@@ -177,7 +195,10 @@ library("tidyverse")
 library("enrichplot")
 suppressPackageStartupMessages(library("org.At.tair.db"))
 
-#Load the DESeq2 table into the R session.
+
+
+
+#c. Load the DESeq2 table into the R session.
 
 #c.1. Setting the path to the DESeq2 table.
 setwd("C:/project_2023/quantification_featureCounts")
@@ -194,6 +215,7 @@ diff_genes <- diff_genes[, c("genes", "log2FoldChange")]
 
 #c.5. Save the new table to a file.
 write.table(diff_genes, file = "diff_genes_up.tsv", sep = "\t", row.names = FALSE, quote = FALSE)
+
 
 
 
@@ -215,6 +237,8 @@ result_BM <- biomartr::biomart(
 )
 
 head(result_BM)
+
+
 
 
 #d. Over-Representation Analysis (ORA) with ClusterProfiler.
@@ -260,6 +284,8 @@ ora_analysis_bp <- enrichGO(
 
 #d.6. Simplify the ORA results.
 ora_analysis_bp_simplified <- clusterProfiler::simplify(ora_analysis_bp)
+
+
 
 
 #e. Exporting and plotting figures.
