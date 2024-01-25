@@ -1,5 +1,24 @@
 # RNA-seq-protocol
+ [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10537097.svg)](https://zenodo.org/DOI/10.5281/zenodo.10537096)
+
  This is the protocol for conducting RNAseq analysis in plants. This repository has been created to make it easier to follow the protocol presented in the Current Protocols journal.
+
+  To streamline the execution of the scripts within this repository, we recommend using Docker. Docker provides a consistent environment for running applications, ensuring that your scripts run smoothly across different platforms. If you haven't installed Docker yet, you can download it based on your operating system:
+
+- **Linux Users:** [Install Docker for Linux](https://docs.docker.com/desktop/install/linux-install/)
+- **Windows Users:** [Install Docker for Windows](https://docs.docker.com/desktop/install/windows-install/)
+- **MacOS Users:** [Install Docker for Mac](https://docs.docker.com/desktop/install/mac-install/)
+
+Once Docker is installed, you'll be able to effortlessly run the scripts in this repository and benefit from a reproducible and isolated environment. Follow the steps in our [Running](#run) section to reproduce our results.
+
+
+## Running {#run}
+
+
+<!-- ![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white) -->
+
+
+
 ## Protocol 1
 
 ### Raw Data for the analysis:
