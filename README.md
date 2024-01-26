@@ -59,9 +59,9 @@ Trim raw reads using Trimmomatic to remove low-quality bases, adapter sequences,
 
 
 
-<center>
+<p align="center">
 <img src="imgs/protocol1and2.png" alt="GitHub Logo" width="500" height="590">
-</center>
+</p>
 
 ## Protocol 3
 **De novo Assembly with Trinity**
@@ -87,9 +87,9 @@ Trim raw reads using Trimmomatic to remove low-quality bases, adapter sequences,
 - Created directories for each replicate and inspected the quantification results.
 
 
-<center>
+<p align="center">
 <img src="imgs/protocol3.png" alt="GitHub Logo" width="500" height="520">
-</center>
+</p>
 ### Raw Data for the analysis:
 
 In the 7th step of the protocol outlined in Current Protocols, we provide detailed instructions for conducting a differential expression analysis. To reach this stage, it is imperative to download the Fastq files and complete the entire analysis, culminating in the contingency table containing counts for each gene. However, to simplify the initiation of hands-on experience with statistical analyses in R, we have deposited the final count matrix here for your convenience.
