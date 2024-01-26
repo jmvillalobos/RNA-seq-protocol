@@ -1,0 +1,6 @@
+Tra Tra_SRR5137658 /RNA_protocol/novo_assembly/trimming_data_agave/Tra_SRR5137658_1_P.fastq.gz /RNA_protocol/novo_assembly/trimming_data_agave/Tra_SRR5137658_2_P.fastq.gz
+Tra Tra_SRR5137660 /RNA_protocol/novo_assembly/trimming_data_agave/Tra_SRR5137660_1_P.fastq.gz /RNA_protocol/novo_assembly/trimming_data_agave/Tra_SRR5137660_2_P.fastq.gz
+Tra Tra_SRR5137663 /RNA_protocol/novo_assembly/trimming_data_agave/Tra_SRR5137663_1_P.fastq.gz /RNA_protocol/novo_assembly/trimming_data_agave/Tra_SRR5137663_2_P.fastq.gz
+Con Con_SRR5137659 /RNA_protocol/novo_assembly/trimming_data_agave/Con_SRR5137659_1_P.fastq.gz /RNA_protocol/novo_assembly/trimming_data_agave/Con_SRR5137659_2_P.fastq.gz
+Con Con_SRR5137661 /RNA_protocol/novo_assembly/trimming_data_agave/Con_SRR5137661_1_P.fastq.gz /RNA_protocol/novo_assembly/trimming_data_agave/Con_SRR5137661_2_P.fastq.gz
+Con Con_SRR5137662 /RNA_protocol/novo_assembly/trimming_data_agave/Con_SRR5137662_1_P.fastq.gz /RNA_protocol/novo_assembly/trimming_data_agave/Con_SRR5137662_2_P.fastq.gz
