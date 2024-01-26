@@ -1,6 +1,7 @@
 # RNA-seq-protocol
  [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10537097.svg)](https://zenodo.org/DOI/10.5281/zenodo.10537096)
 
+
  This is the protocol for conducting RNAseq analysis in plants. This repository has been created to make it easier to follow the protocol presented in the Current Protocols journal.
 
   To streamline the execution of the scripts within this repository, we recommend using Docker. Docker provides a consistent environment for running applications, ensuring that your scripts run smoothly across different platforms. If you haven't installed Docker yet, you can download it based on your operating system:
@@ -21,6 +22,74 @@ Once Docker is installed, you'll be able to effortlessly run the scripts in this
 
 ## Protocol 1
 
+
+**Step 1: Data Download**
+Download raw RNA-seq data from the European Nucleotide Archive (ENA) related to the study of Trichoderma atroviride's Nox genes during interaction with Arabidopsis thaliana.
+
+**Step 3: Quality Check on Raw Reads with FastQC**
+
+Evaluate the quality of raw data using FastQC, analyzing metrics such as per base sequence quality.
+
+**Step 4: Read Trimming with Trimmomatic**
+
+Trim raw reads using Trimmomatic to remove low-quality bases, adapter sequences, and short reads.
+
+**Step 5: Alignment of Reads**
+
+- Create an index for the reference genome.
+- Align trimmed reads to the Arabidopsis thaliana reference genome using HISAT2.
+
+**Step 6: Quantification of Mapped Reads**
+
+- Download the GTF annotation file for Arabidopsis thaliana.
+- Quantify the number of mapped reads using featureCounts.
+- Create a count matrix for downstream analysis.
+
+**Step 7: Differential Expression Analysis**
+
+- Perfor differential expression analysis using DESeq2 in R.
+- Filter lowly expressed genes.
+- Generate PCA plots for quality assessment.
+- Exporte results, create volcano plots, and identify differentially expressed genes (DEGs).
+
+## Protocol 2
+
+**Functional Enrichment Analysis**
+
+
+
+
+<center>
+<img src="imgs/protocol1and2.png" alt="GitHub Logo" width="500" height="590">
+</center>
+
+## Protocol 3
+**De novo Assembly with Trinity**
+- Executed de novo transcriptome assembly using Trinity.
+- Resulted in `Trinity.fasta` representing assembled transcripts.
+
+**Step 2: Evaluating the Assembly**
+
+- Count Assembled Transcripts
+
+- Used a command to count the number of assembled transcripts and obtain Comprehensive Assembly Statistics
+
+- Included N50, GC content, and contig lengths.
+
+**Step 3: Redundancy Removal**
+
+- Applied CD-HIT to remove redundancy from the transcriptome assembly.
+- Reduced the number of contigs.
+
+**Step 4: Transcript Expression Quantification with Salmon**
+
+- Used Salmon to estimate expression values of transcripts.
+- Created directories for each replicate and inspected the quantification results.
+
+
+<center>
+<img src="imgs/protocol3.png" alt="GitHub Logo" width="500" height="520">
+</center>
 ### Raw Data for the analysis:
 
 In the 7th step of the protocol outlined in Current Protocols, we provide detailed instructions for conducting a differential expression analysis. To reach this stage, it is imperative to download the Fastq files and complete the entire analysis, culminating in the contingency table containing counts for each gene. However, to simplify the initiation of hands-on experience with statistical analyses in R, we have deposited the final count matrix here for your convenience.
