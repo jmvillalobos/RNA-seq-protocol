@@ -1,0 +1,54 @@
+## Software Dependencies
+
+### Bioinformatics Tools
+Trimmomatic v0.39
+STAR v2.7.10a
+FastQC v0.11.9
+Kallisto v0.46.1
+MultiQC v1.12
+Salmon v1.4.0
+featureCounts/subread v2.0.3
+HTSeq-count v1.99.2
+Trinity v2.13.2
+SOAPdenovo-Trans v1.0.5
+Samtools v1.9
+HISAT2 v2.2.1
+
+### R Packages
+RCurl==1.98-1.14
+BiocManager==1.30.22
+RColorBrewer==1.1-3
+pheatmap==1.0.12
+tidyverse==2.0.0
+ggplot2==3.4.4
+dplyr==1.1.4
+topGO==2.54.0
+DESeq2==1.42.0
+edgeR==4.0.11
+PCAtools==2.14.0
+EnhancedVolcano==1.20.0
+clusterProfiler==4.10.0
+enrichplot==1.22.0
+biomartr==1.0.7
+org.At.tair.db==3.18.0
+
+
+### System Utilities and Dependencies
+- openjdk-8-jre-headless
+- zlib1g-dev
+- make
+- build-essential
+- libbz2-dev
+- liblzma-dev
+- libncurses5-dev
+- libncursesw5-dev
+- libpng-dev
+- libtiff5-dev
+- libjpeg-dev
+- libcurl4-openssl-dev
+- libssl-dev
+- libfontconfig1-dev
+- libfreetype6-dev
+- libxml2-dev
+- libharfbuzz-dev
+- libfribidi-dev
