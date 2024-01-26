@@ -60,7 +60,7 @@ Trim raw reads using Trimmomatic to remove low-quality bases, adapter sequences,
 
 
 <p align="center">
-<img src="imgs/protocol1and2.png" alt="GitHub Logo" width="500" height="590">
+<img src="imgs/protocol1and2.png" alt="GitHub Logo" width="400" height="490">
 </p>
 
 ## Protocol 3
@@ -88,7 +88,7 @@ Trim raw reads using Trimmomatic to remove low-quality bases, adapter sequences,
 
 
 <p align="center">
-<img src="imgs/protocol3.png" alt="GitHub Logo" width="500" height="520">
+<img src="imgs/protocol3.png" alt="GitHub Logo" width="400" height="420">
 </p>
 ### Raw Data for the analysis:
 
