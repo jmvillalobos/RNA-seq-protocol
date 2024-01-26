@@ -8,7 +8,6 @@ RUN apt-get update && \
 
 # TRIMMOMATIC v0.39
 RUN apt-get install -y openjdk-8-jre-headless
-
 RUN wget https://github.com/usadellab/Trimmomatic/files/5854859/Trimmomatic-0.39.zip
 RUN unzip Trimmomatic-0.39.zip
 RUN mv Trimmomatic-0.39 /usr/local/bin/
@@ -140,6 +139,7 @@ RUN chmod +x /usr/local/bin/hisat2
 RUN touch /usr/local/bin/hisat2-build
 RUN echo '#!/bin/bash' > /usr/local/bin/hisat2-build
 RUN echo 'python3 /usr/local/bin/hisat2-2.2.1/hisat2-build "$@"' >> /usr/local/bin/hisat2-build
+RUN chmod +x /usr/local/bin/hisat2-build
 RUN rm download
 
 
