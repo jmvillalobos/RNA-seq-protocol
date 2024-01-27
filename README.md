@@ -27,35 +27,89 @@ Once Docker is installed, you'll be able to effortlessly run the scripts in this
 Download raw RNA-seq data from the European Nucleotide Archive (ENA) related to the study of Trichoderma atroviride's Nox genes during interaction with Arabidopsis thaliana.
 
 **Step 3: Quality Check on Raw Reads with FastQC**
-
 Evaluate the quality of raw data using FastQC, analyzing metrics such as per base sequence quality.
+
+```bash
+fastqc /RNA_protocol/raw_data/*.gz* --outdir /RNA_protocol/quality_raw/
+```
 
 **Step 4: Read Trimming with Trimmomatic**
 
+
 Trim raw reads using Trimmomatic to remove low-quality bases, adapter sequences, and short reads.
+```bash
+for sample in 204 206 210 212 216 218; 
+do
+    trimmomatic PE -phred33 \
+        /RNA_protocol/raw_data/SRR10207${sample}_1.fastq.gz \
+        /RNA_protocol/raw_data/SRR10207${sample}_2.fastq.gz \
+        /RNA_protocol/trimming_data/SRR10207${sample}_P_1.fastq.gz /RNA_protocol/trimming_data/SRR10207${sample}_U_1.fastq.gz \
+        /RNA_protocol/trimming_data/SRR10207${sample}_P_2.fastq.gz /RNA_protocol/trimming_data/SRR10207${sample}_U_2.fastq.gz \
+        ILLUMINACLIP:/usr/local/bin/Trimmomatic-0.39/adapters/TruSeq3-PE.fa:2:30:10 \
+        SLIDINGWINDOW:4:15 MINLEN:36
+done
+```
 
 **Step 5: Alignment of Reads**
 
 - Create an index for the reference genome.
 - Align trimmed reads to the Arabidopsis thaliana reference genome using HISAT2.
 
+```bash
+# Build index
+hisat2-build -p 4 /RNA_protocol/genome_arabidopsis/Arabidopsis_thaliana.TAIR10.dna.toplevel.fa /RNA_protocol/index_hisat2/genome
+```
+```bash
+# Align to reference genome
+for sample in 204 206 210 212 216 218; 
+do
+    hisat2 -p 4 -x /RNA_protocol/index_hisat2/genome \
+        -1 /RNA_protocol/trimming_data/SRR10207${sample}_P_1.fastq.gz \
+        -2 /RNA_protocol/trimming_data/SRR10207${sample}_P_2.fastq.gz \
+        -S /RNA_protocol/alignment_hisat2/SRR10207${sample}.sam
+
+    samtools sort /RNA_protocol/alignment_hisat2/SRR10207${sample}.sam -o  /RNA_protocol/alignment_hisat2/SRR10207${sample}_sorted.bam
+done
+```
+
 **Step 6: Quantification of Mapped Reads**
 
 - Download the GTF annotation file for Arabidopsis thaliana.
 - Quantify the number of mapped reads using featureCounts.
-- Create a count matrix for downstream analysis.
+- Create a count matrix for downstream analysis ([matriz_arabidopsis_2023.txt](http://example.com))
+
+
+```bash
+for file in $/RNA_protocol/alignment_hisat2/*.bam
+do
+    name=$(basename ${file} .bam)
+    featureCounts -p --countReadPairs -t exon -g gene_id \
+        -a /RNA_protocol/genome_arabidopsis/Arabidopsis_thaliana.TAIR10.57.gtf \
+        -o /RNA_protocol/quantification_featureCounts/featureCounts_output/${name}.txt \
+        /RNA_protocol/alignment_hisat2/${name}.bam
+done
+```
+```bash
+ls -1 /RNA_protocol/quantification_featureCounts/featureCounts_output/*.txt | parallel 'cat {} | sed '1d' | cut -f7 {} > /RNA_protocol/quantification_featureCounts/{/.}_clean.txt'
+ls -1 /RNA_protocol/quantification_featureCounts/featureCounts_output/*.txt | head -1 | xargs cut -f1 > /RNA_protocol/quantification_featureCounts/genes.txt
+paste /RNA_protocol/quantification_featureCounts/genes.txt /RNA_protocol/quantification_featureCounts/*clean.txt > /RNA_protocol/quantification_featureCounts/matriz_arabidopsis_2023.txt
+```
 
 **Step 7: Differential Expression Analysis**
 
-- Perfor differential expression analysis using DESeq2 in R.
+- Perform differential expression analysis using DESeq2 in R.
 - Filter lowly expressed genes.
 - Generate PCA plots for quality assessment.
 - Exporte results, create volcano plots, and identify differentially expressed genes (DEGs).
 
+See [Differential Expression Script](./src/scripts/differential_expression_analysis.R)
+
+
+
 ## Protocol 2
 
 **Functional Enrichment Analysis**
-
+See [Functional Enrichment Script](./src/scripts/functional_enrichment_analysis.R)
 
 
 
@@ -67,12 +121,12 @@ Trim raw reads using Trimmomatic to remove low-quality bases, adapter sequences,
 **De novo Assembly with Trinity**
 - Executed de novo transcriptome assembly using Trinity.
 - Resulted in `Trinity.fasta` and `Trinity.fasta.gene_trans_map` representing assembled transcripts.
-
 ```bash
 Trinity --seqType fq  --samples_file samples.txt --CPU 4 --max_memory 12G
 mv trinity_out_dir.Trinity.fasta Trinity.fasta
 mv trinity_out_dir.Trinity.fasta.gene_trans_map Trinity.fasta.gene_trans_map
 ```
+ > The samples file used in the command _(samples.txt)_ was manually generated and it is available in the repository [here](./RNA_protocol/novo_assembly/trinity_analysis/samples.txt)
 
 **Step 2: Evaluating the Assembly**
 
