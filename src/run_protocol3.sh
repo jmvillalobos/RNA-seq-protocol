@@ -7,15 +7,15 @@ NC='\033[0m'
 echo -e "${RED}INITIATING PROTOCOL 3${NC}"
 
 echo -e "${BLUE}Undertaking de novo assebly with Trinity...${NC}"
-bash /usr/scripts/trinity_assembly.sh 2>&1 | tee /RNA_protocol/script_logs/trinity_assembly.log
+bash /src/scripts/trinity_assembly.sh 2>&1 | tee /RNA_protocol/script_logs/trinity_assembly.log
 
 echo -e "${BLUE}Using CD-HIT for redundancy removal of the assembly...${NC}"
-bash /usr/scripts/cdhit_redundancyRemoval.sh 2>&1 | tee /RNA_protocol/script_logs/cdhit_redundancyRemoval.log
+bash /src/scripts/cdhit_redundancyRemoval.sh 2>&1 | tee /RNA_protocol/script_logs/cdhit_redundancyRemoval.log
 
 echo -e "${BLUE}Assesing assembly quality...${NC}"
-bash /usr/scripts/trinityStats_analysis.sh 2>&1 | tee /RNA_protocol/script_logs/trinityStats_analysis.log
+bash /src/scripts/trinityStats_analysis.sh 2>&1 | tee /RNA_protocol/script_logs/trinityStats_analysis.log
 
 echo -e "${BLUE}Performing transcript expression analysis with Salmon...${NC}"
-bash /usr/scripts/salmon_transcriptExpression.sh 2>&1 | tee /RNA_protocol/script_logs/salmon_transcriptExpression.log
+bash /src/scripts/salmon_transcriptExpression.sh 2>&1 | tee /RNA_protocol/script_logs/salmon_transcriptExpression.log
 
 echo -e "${RED}PROTOCOL 3 COMPLETED${NC}"
