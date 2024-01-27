@@ -66,7 +66,13 @@ Trim raw reads using Trimmomatic to remove low-quality bases, adapter sequences,
 ## Protocol 3
 **De novo Assembly with Trinity**
 - Executed de novo transcriptome assembly using Trinity.
-- Resulted in `Trinity.fasta` representing assembled transcripts.
+- Resulted in `Trinity.fasta` and `Trinity.fasta.gene_trans_map` representing assembled transcripts.
+
+```bash
+Trinity --seqType fq  --samples_file samples.txt --CPU 4 --max_memory 12G
+mv trinity_out_dir.Trinity.fasta Trinity.fasta
+mv trinity_out_dir.Trinity.fasta.gene_trans_map Trinity.fasta.gene_trans_map
+```
 
 **Step 2: Evaluating the Assembly**
 
@@ -76,16 +82,104 @@ Trim raw reads using Trimmomatic to remove low-quality bases, adapter sequences,
 
 - Included N50, GC content, and contig lengths.
 
+```bash
+perl /usr/local/bin/trinityrnaseq-v2.13.2/util/TrinityStats.pl Trinity.fasta
+```
+```console
+################################
+## Counts of transcripts, etc.
+################################
+Total trinity 'genes':  1884
+Total trinity transcripts:      2116
+Percent GC: 49.26
+
+########################################
+Stats based on ALL transcript contigs:
+########################################
+
+        Contig N10: 1268
+        Contig N20: 981
+        Contig N30: 736
+        Contig N40: 585
+        Contig N50: 462
+
+        Median contig length: 315
+        Average contig: 431.78
+        Total assembled bases: 913641
+
+
+#####################################################
+## Stats based on ONLY LONGEST ISOFORM per 'GENE':
+#####################################################
+
+        Contig N10: 1227
+        Contig N20: 845
+        Contig N30: 632
+        Contig N40: 504
+        Contig N50: 413
+
+        Median contig length: 303
+        Average contig: 402.23
+        Total assembled bases: 757802
+```
+
 **Step 3: Redundancy Removal**
 
 - Applied CD-HIT to remove redundancy from the transcriptome assembly.
 - Reduced the number of contigs.
 
+```bash
+cd-hit-est -i Trinity.fasta -o Trinity_90.fasta -c 0.9 -n 9
+```
+```bash
+perl /usr/local/bin/trinityrnaseq-v2.13.2/util/TrinityStats.pl Trinity_90.fasta
+```
+```console
+################################
+## Counts of transcripts, etc.
+################################
+Total trinity 'genes':  1869
+Total trinity transcripts:      1904
+Percent GC: 49.19
+
+########################################
+Stats based on ALL transcript contigs:
+########################################
+
+        Contig N10: 1198
+        Contig N20: 857
+        Contig N30: 646
+        Contig N40: 514
+        Contig N50: 419
+
+        Median contig length: 305
+        Average contig: 405.38
+        Total assembled bases: 771847
+
+
+#####################################################
+## Stats based on ONLY LONGEST ISOFORM per 'GENE':
+#####################################################
+
+        Contig N10: 1227
+        Contig N20: 843
+        Contig N30: 630
+        Contig N40: 505
+        Contig N50: 413
+
+        Median contig length: 303
+        Average contig: 402.57
+        Total assembled bases: 752400
+
+```
 **Step 4: Transcript Expression Quantification with Salmon**
 
 - Used Salmon to estimate expression values of transcripts.
 - Created directories for each replicate and inspected the quantification results.
 
+<!-- ```bash
+cd-hit-est -i Trinity.fasta -o Trinity_90.fasta -c 0.9 -n 9 -->
+<!-- ``` -->
 
 <p align="center">
 <img src="imgs/protocol3.png" alt="GitHub Logo" width="400" height="420">
