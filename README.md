@@ -73,10 +73,10 @@ This will take you to the container enviroment where all the bioinformatic tools
 
 
 **Step 1: Data Download**
-Download raw RNA-seq data from the European Nucleotide Archive (ENA) related to the study of Trichoderma atroviride's Nox genes during interaction with Arabidopsis thaliana.
+Downloads raw RNA-seq data from the European Nucleotide Archive (ENA) related to the study of Trichoderma atroviride's Nox genes during interaction with Arabidopsis thaliana.
 
 **Step 3: Quality Check on Raw Reads with FastQC**
-Evaluate the quality of raw data using FastQC, analyzing metrics such as per base sequence quality.
+Evaluates the quality of raw data using FastQC, analyzing metrics such as per base sequence quality.
 
 ```bash
 fastqc /RNA_protocol/raw_data/*.gz* --outdir /RNA_protocol/quality_raw/
@@ -85,7 +85,7 @@ fastqc /RNA_protocol/raw_data/*.gz* --outdir /RNA_protocol/quality_raw/
 **Step 4: Read Trimming with Trimmomatic**
 
 
-Trim raw reads using Trimmomatic to remove low-quality bases, adapter sequences, and short reads.
+Trims raw reads using Trimmomatic to remove low-quality bases, adapter sequences, and short reads.
 ```bash
 for sample in 204 206 210 212 216 218; 
 do
@@ -101,8 +101,8 @@ done
 
 **Step 5: Alignment of Reads**
 
-- Create an index for the reference genome.
-- Align trimmed reads to the Arabidopsis thaliana reference genome using HISAT2.
+- Creates an index for the reference genome.
+- Aligns trimmed reads to the Arabidopsis thaliana reference genome using HISAT2.
 
 ```bash
 # Build index
@@ -123,9 +123,9 @@ done
 
 **Step 6: Quantification of Mapped Reads**
 
-- Download the GTF annotation file for Arabidopsis thaliana.
-- Quantify the number of mapped reads using featureCounts.
-- Create a count matrix for downstream analysis ([matriz_arabidopsis_2023.txt](http://example.com))
+- Downloads the GTF annotation file for Arabidopsis thaliana.
+- Quantifies the number of mapped reads using featureCounts.
+- Creates a count matrix for downstream analysis ([matriz_arabidopsis_2023.txt](http://example.com))
 
 
 ```bash
@@ -146,10 +146,10 @@ paste /RNA_protocol/quantification_featureCounts/genes.txt /RNA_protocol/quantif
 
 **Step 7: Differential Expression Analysis**
 
-- Perform differential expression analysis using DESeq2 in R.
-- Filter lowly expressed genes.
-- Generate PCA plots for quality assessment.
-- Exporte results, create volcano plots, and identify differentially expressed genes (DEGs).
+- Performs differential expression analysis using DESeq2 in R.
+- Filters lowly expressed genes.
+- Generates PCA plots for quality assessment.
+- Saves results, create volcano plots, and identify differentially expressed genes (DEGs).
 
 See [Differential Expression Script](./src/scripts/differential_expression_analysis.R)
 
@@ -159,7 +159,7 @@ See [Differential Expression Script](./src/scripts/differential_expression_analy
 
 **Gene Ontology Enrichment Analysis**
 
-In this protocol, we will use clusterProfiler to perform Over-Representation Analysis (ORA), a widely used approach to determine whether known biological functions or processes are over-represented (enriched) in an experimentally derived list of genes, for example, a list of differentially expressed genes (protocol1)
+This protocol uses clusterProfiler to perform Over-Representation Analysis (ORA), a widely used approach to determine whether known biological functions or processes are over-represented (enriched) in an experimentally derived list of genes, for example, a list of differentially expressed genes (protocol 1)
 
 See [Functional Enrichment Script](./src/scripts/functional_enrichment_analysis.R)
 
@@ -173,8 +173,8 @@ See [Functional Enrichment Script](./src/scripts/functional_enrichment_analysis.
 
 ## Protocol 3
 **De novo Assembly with Trinity**
-- Executed de novo transcriptome assembly using Trinity.
-- Resulted in `Trinity.fasta` and `Trinity.fasta.gene_trans_map` representing assembled transcripts.
+- Executes de novo transcriptome assembly using Trinity.
+- Results in `Trinity.fasta` and `Trinity.fasta.gene_trans_map` representing assembled transcripts.
 ```bash
 Trinity --seqType fq  --samples_file samples.txt --CPU 4 --max_memory 12G
 mv trinity_out_dir.Trinity.fasta Trinity.fasta
@@ -184,11 +184,11 @@ mv trinity_out_dir.Trinity.fasta.gene_trans_map Trinity.fasta.gene_trans_map
 
 **Step 2: Evaluating the Assembly**
 
-- Count Assembled Transcripts
+- Counts Assembled Transcripts
 
-- Used a command to count the number of assembled transcripts and obtain Comprehensive Assembly Statistics
+- Uses a command to count the number of assembled transcripts and obtain Comprehensive Assembly Statistics
 
-- Included N50, GC content, and contig lengths.
+- Includes N50, GC content, and contig lengths.
 
 ```bash
 perl /usr/local/bin/trinityrnaseq-v2.13.2/util/TrinityStats.pl Trinity.fasta
@@ -233,8 +233,8 @@ Stats based on ALL transcript contigs:
 
 **Step 3: Redundancy Removal**
 
-- Applied CD-HIT to remove redundancy from the transcriptome assembly.
-- Reduced the number of contigs.
+- Applies CD-HIT to remove redundancy from the transcriptome assembly.
+- Reduces the number of contigs.
 
 ```bash
 cd-hit-est -i Trinity.fasta -o Trinity_90.fasta -c 0.9 -n 9
@@ -282,8 +282,8 @@ Stats based on ALL transcript contigs:
 ```
 **Step 4: Transcript Expression Quantification with Kallisto**
 
-- Used Salmon to estimate expression values of transcripts.
-- Created directories for each replicate and inspected the quantification results.
+- Uses Salmon to estimate expression values of transcripts.
+- Creates directories for each replicate and inspected the quantification results.
 
 ```bash
 perl /usr/local/bin/trinityrnaseq-v2.13.2/util/align_and_estimate_abundance.pl \
