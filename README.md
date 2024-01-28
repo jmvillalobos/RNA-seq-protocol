@@ -158,6 +158,7 @@ See [Differential Expression Script](./src/scripts/differential_expression_analy
 ## Protocol 2
 
 **Gene Ontology Enrichment Analysis**
+
 In this protocol, we will use clusterProfiler to perform Over-Representation Analysis (ORA), a widely used approach to determine whether known biological functions or processes are over-represented (enriched) in an experimentally derived list of genes, for example, a list of differentially expressed genes (protocol1)
 
 See [Functional Enrichment Script](./src/scripts/functional_enrichment_analysis.R)
