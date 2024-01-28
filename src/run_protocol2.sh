@@ -6,6 +6,7 @@ NC='\033[0m'
 
 if [ ! -f "/RNA_protocol/quantification_featureCounts/matriz_arabidopsis_2023.txt" ]; then
     wget -P /RNA_protocol/quantification_featureCounts/ https://zenodo.org/records/10576137/files/matriz_arabidopsis_2023.txt
+fi
 
 echo -e "${RED}INITIATING PROTOCOL 2${NC}"
 
