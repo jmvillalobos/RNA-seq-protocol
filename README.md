@@ -48,7 +48,19 @@ docker run --rm -v $(pwd)/RNA_protocol/:/RNA_protocol/ -v $(pwd)/src/:/src/ rafa
 docker run --rm -v $pwd/RNA_protocol/:/RNA_protocol/ -v $pwd/src/:/src/ rafape/rna_protocol:2.0 /src/run_all_protocols.sh
 ```
 
-The previous command can be used to run any of the protocols scripts separately changing the path of the bash file at the end.
+The previous command can be used to run any of the protocols scripts separately changing the path of the bash file at the end. 
+
+```bash
+docker run --rm -v $(pwd)/RNA_protocol/:/RNA_protocol/ -v $(pwd)/src/:/src/ rafape/rna_protocol:2.0 /src/run_protocol1.sh
+docker run --rm -v $(pwd)/RNA_protocol/:/RNA_protocol/ -v $(pwd)/src/:/src/ rafape/rna_protocol:2.0 /src/run_protocol2.sh
+docker run --rm -v $(pwd)/RNA_protocol/:/RNA_protocol/ -v $(pwd)/src/:/src/ rafape/rna_protocol:2.0 /src/run_protocol3.sh
+```
+
+> **Important Note**
+>
+> If you choose to run the complete pipeline using the `run_all_protocols.sh` script, please be aware that this process involves downloading all the necessary data and generating intermediate files. This operation requires significant time (approximately two hours or more) and disk space (at least 8GB).
+>
+> If you prefer a quicker or more resource-efficient option, consider running individual protocol scripts separately, as described above.
 
 Alternatively, you can run the Docker container in interactive mode, allowing you to run the tools in the container, follow the protocol as outlined in the paper, run and edit scripts, navigate directories, and more. This interactive mode is particularly beneficial if you want to personally execute bioinformatic tools, tweak parameters, experiment with files, and explore the environment.
 
@@ -165,10 +177,8 @@ See [Functional Enrichment Script](./src/scripts/functional_enrichment_analysis.
 
 
 
-
-
 <p align="center">
-<img src="imgs/protocol1and2.png" alt="GitHub Logo" width="400" height="490">
+<img src="imgs/protocol1and2.png" alt="GitHub Logo" width="430" height="510">
 </p>
 
 ## Protocol 3
@@ -294,5 +304,5 @@ perl /usr/local/bin/trinityrnaseq-v2.13.2/util/align_and_estimate_abundance.pl \
 
 
 <p align="center">
-<img src="imgs/protocol3.png" alt="GitHub Logo" width="400" height="420">
+<img src="imgs/protocol3.png" alt="GitHub Logo" width="430" height="440">
 </p>   
