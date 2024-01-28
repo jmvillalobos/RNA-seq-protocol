@@ -7,50 +7,40 @@ library("EnhancedVolcano")
 # Loading the library for heatmap
 library("pheatmap")
 
-# # Setting the Path to the featureCounts Count Matrix
-# setwd("RNA-seq-protocol/quantification_featureCounts/")
+
 pdf(file="PlotsDifferentialExpression.pdf")
 
-# Reading the Count Matrix
-countData <- read.delim("matriz_arabidopsis_2023_gen.txt", header =TRUE, row.names = 1, skip=1)
+first_line <- tolower(readLines("matriz_arabidopsis_2023.txt", n = 1))
 
-extracted_names <- sub(".+\\.(\\w+)\\..+$", "\\1", colnames(countData))
-# colnames(your_data) <- new_column_names
+# Check if the substring "featureCounts" is present in the first line
+if (grepl("featureCounts", first_line)) {
 
-sample_dictionary <- c("SRR10207204" = "Control", "SRR10207210" = "Control", "SRR10207216" = "Control", "SRR10207206" = "Treatment", "SRR10207212" = "Treatment", "SRR10207218" = "Treatment")
-# Add more entries as needed
+    countData <- read.delim("matriz_arabidopsis_2023.txt", header =TRUE, row.names = 1, skip=1)
+    extracted_names <- sub(".+\\.(\\w+)\\..+$", "\\1", colnames(countData))
+    sample_dictionary <- c("SRR10207204" = "Control", "SRR10207210" = "Control", "SRR10207216" = "Control", "SRR10207206" = "Treatment", "SRR10207212" = "Treatment", "SRR10207218" = "Treatment")
+    sample_types <- sapply(extracted_names, function(name) sample_dictionary[[name]])
+    colnames(countData) <- extracted_names
+    condition <- factor(sample_types)
+    colData <- data.frame(row.names = colnames(countData), condition)
 
-# Map the sample types using the dictionary
-sample_types <- sapply(extracted_names, function(name) sample_dictionary[[name]])
+} else {
 
-# Combine the extracted names with the sample types
-# new_column_names <- paste(extracted_names, sample_types, sep = "_")
+    countData <- read.delim("./matriz_arabidopsis_2023.txt", header = TRUE, row.names = 1) 
+    column_order <- c("control_1", "control_2", "control_3", "treatment_1", "treatment_2", "treatment_3")
+    countData <- countData[, column_order]
+    condition <- factor(c("Control", "Control", "Control", "Treatment", "Treatment", "Treatment"))
+    colData <- data.frame(row.names = colnames(countData), condition)
 
-# Replace the column names
-# colnames(your_data) <- new_column_names
+}
 
-# Replace the column names
-colnames(countData) <- extracted_names
-
-# Description of Samples
-# condition <- factor(c("Control", "Treatment", "Control", "Treatment", "Control", "Treatment"))
-# colData <- data.frame(row.names = colnames(countData), condition)
-# sample_types <- sapply(extracted_names, function(name) sample_dictionary[[name]])
-
-# Create the condition factor using the sample types
-condition <- factor(sample_types)
-colData <- data.frame(row.names = colnames(countData), condition)
-
-# print(head(colData))
 
 # Creating a DESeqDataSet
 dds <- DESeqDataSetFromMatrix(countData = countData, colData = colData, design = ~condition)
 
 # Generating a PCA Plot
 rld <- rlog(dds, blind = F)
-# pca_plot <- plotPCA(rld, intgroup = "condition") + geom_text(aes(label=name),vjust=0.2)
 plotPCA(rld, intgroup = "condition") + geom_text(aes(label=name),vjust=0.2)
-# ggsave("PCA_plot.png", pca_plot, dpi = 400)
+# pca_plot <- plotPCA(rld, intgroup = "condition") + geom_text(aes(label=name),vjust=0.2)
 # ggsave("PCA_plot.png", pca_plot, dpi = 400)
 
 # Filtering Genes with Very Low Expression (less than 10 reads)
@@ -88,12 +78,7 @@ EnhancedVolcano(res, lab = rownames(res), x = 'log2FoldChange', y = 'pvalue')
 # ggsave("volcano_plot.png", volcano_plot, dpi = 400)
 
 # Setting the Contrast of Interest
-# plotma <- plotMA(Treatment_vs_Control, alpha = 0.05, main = "Inoculated with Trichoderma vs Control", xlab = "mean of normalized counts",  ylim = c(-2, 2))
 plotMA(Treatment_vs_Control, alpha = 0.05, main = "Inoculated with Trichoderma vs Control", xlab = "mean of normalized counts",  ylim = c(-2, 2))
-# plotma <- plotMA(Treatment_vs_Control, alpha = 0.5, main = "Inoculated with Trichoderma vs Control", xlab = "mean of normalized counts")
-# plotma <- plotMA(res, alpha = 0.05, main = "Inoculated with Trichoderma vs Control", xlab = "mean of normalized counts")
-# plotma <- plotMA(Treatment_vs_Control, ylim = c(-2, 2))
-# ggsave("MA_plot.png", plotma, dpi = 400)
 
 # Selecting the Top 20 Differentially Expressed Genes in the Treatment_vs_Control Comparison
 res_ordered <- Treatment_vs_Control[order(Treatment_vs_Control$padj), ]
