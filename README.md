@@ -275,14 +275,18 @@ Stats based on ALL transcript contigs:
         Total assembled bases: 752400
 
 ```
-**Step 4: Transcript Expression Quantification with Salmon**
+**Step 4: Transcript Expression Quantification with Kallisto**
 
 - Used Salmon to estimate expression values of transcripts.
 - Created directories for each replicate and inspected the quantification results.
 
-<!-- ```bash
-cd-hit-est -i Trinity.fasta -o Trinity_90.fasta -c 0.9 -n 9 -->
-<!-- ``` -->
+```bash
+perl /usr/local/bin/trinityrnaseq-v2.13.2/util/align_and_estimate_abundance.pl \
+--seqType fq --samples_file /RNA_protocol/novo_assembly/trinity_analysis samples.txt \
+--transcripts /RNA_protocol/novo_assembly/trinity_analysis/Trinity_90.fasta \
+--est_method kallisto --trinity_mode --prep_reference
+```
+
 
 <p align="center">
 <img src="imgs/protocol3.png" alt="GitHub Logo" width="400" height="420">
