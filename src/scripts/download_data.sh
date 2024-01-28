@@ -1,25 +1,31 @@
 #!/bin/bash
 
-wget -P /RNA_protocol/raw_data/ https://ftp.sra.ebi.ac.uk/vol1/fastq/SRR102/004/SRR10207204/SRR10207204_1.fastq.gz
-wget -P /RNA_protocol/raw_data/ https://ftp.sra.ebi.ac.uk/vol1/fastq/SRR102/004/SRR10207204/SRR10207204_2.fastq.gz
-wget -P /RNA_protocol/raw_data/ https://ftp.sra.ebi.ac.uk/vol1/fastq/SRR102/006/SRR10207206/SRR10207206_1.fastq.gz
-wget -P /RNA_protocol/raw_data/ https://ftp.sra.ebi.ac.uk/vol1/fastq/SRR102/006/SRR10207206/SRR10207206_2.fastq.gz
-wget -P /RNA_protocol/raw_data/ https://ftp.sra.ebi.ac.uk/vol1/fastq/SRR102/010/SRR10207210/SRR10207210_1.fastq.gz
-wget -P /RNA_protocol/raw_data/ https://ftp.sra.ebi.ac.uk/vol1/fastq/SRR102/010/SRR10207210/SRR10207210_2.fastq.gz
-wget -P /RNA_protocol/raw_data/ https://ftp.sra.ebi.ac.uk/vol1/fastq/SRR102/012/SRR10207212/SRR10207212_1.fastq.gz
-wget -P /RNA_protocol/raw_data/ https://ftp.sra.ebi.ac.uk/vol1/fastq/SRR102/012/SRR10207212/SRR10207212_2.fastq.gz
-wget -P /RNA_protocol/raw_data/ https://ftp.sra.ebi.ac.uk/vol1/fastq/SRR102/016/SRR10207216/SRR10207216_1.fastq.gz
-wget -P /RNA_protocol/raw_data/ https://ftp.sra.ebi.ac.uk/vol1/fastq/SRR102/016/SRR10207216/SRR10207216_2.fastq.gz
-wget -P /RNA_protocol/raw_data/ https://ftp.sra.ebi.ac.uk/vol1/fastq/SRR102/018/SRR10207218/SRR10207218_1.fastq.gz
-wget -P /RNA_protocol/raw_data/ https://ftp.sra.ebi.ac.uk/vol1/fastq/SRR102/018/SRR10207218/SRR10207218_2.fastq.gz
+wget /RNA_protocol/raw_data/ https://zenodo.org/records/10576137/files/raw_data1.zip
+wget /RNA_protocol/raw_data/ https://zenodo.org/records/10576137/files/raw_data2.zip
+wget /RNA_protocol/raw_data/ https://zenodo.org/records/10576137/files/raw_data3.zip
 
-wget -P /RNA_protocol/genome_arabidopsis/ https://ftp.ebi.ac.uk/ensemblgenomes/pub/release-57/plants/fasta/arabidopsis_thaliana/dna/Arabidopsis_thaliana.TAIR10.dna.toplevel.fa.gz
+unzip /RNA_protocol/raw_data/raw_data1.zip -d /RNA_protocol/raw_data/
+unzip /RNA_protocol/raw_data/raw_data2.zip -d /RNA_protocol/raw_data/
+unzip /RNA_protocol/raw_data/raw_data3.zip -d /RNA_protocol/raw_data/
+rm /RNA_protocol/raw_data/raw_data1.zip
+rm /RNA_protocol/raw_data/raw_data2.zip
+rm /RNA_protocol/raw_data/raw_data3.zip
+
+wget -P /RNA_protocol/genome_arabidopsis/ -nc https://ftp.ebi.ac.uk/ensemblgenomes/pub/release-57/plants/fasta/arabidopsis_thaliana/dna/Arabidopsis_thaliana.TAIR10.dna.toplevel.fa.gz
 gunzip /RNA_protocol/genome_arabidopsis/Arabidopsis_thaliana.TAIR10.dna.toplevel.fa.gz
 
-wget -P /RNA_protocol/genome_arabidopsis/ https://ftp.ebi.ac.uk/ensemblgenomes/pub/release-57/plants/gtf/arabidopsis_thaliana/Arabidopsis_thaliana.TAIR10.57.gtf.gz
+wget -P /RNA_protocol/genome_arabidopsis/ -nc https://ftp.ebi.ac.uk/ensemblgenomes/pub/release-57/plants/gtf/arabidopsis_thaliana/Arabidopsis_thaliana.TAIR10.57.gtf.gz
 gunzip /RNA_protocol/genome_arabidopsis/Arabidopsis_thaliana.TAIR10.57.gtf.gz
 
-wget -P /RNA_protocol/novo_assembly/trimming_data_agave/ https://zenodo.org/api/records/10537097/files-archive
-mv /RNA_protocol/novo_assembly/trimming_data_agave/files-archive /RNA_protocol/novo_assembly/trimming_data_agave/files-archive.zip
-unzip /RNA_protocol/novo_assembly/trimming_data_agave/files-archive.zip -d /RNA_protocol/novo_assembly/trimming_data_agave/
-rm /RNA_protocol/novo_assembly/trimming_data_agave/files-archive.zip
+wget -P /RNA_protocol/novo_assembly/trimming_data_agave/ -nc https://zenodo.org/records/10576137/files/Con_SRR5137659_1_P.fastq.gz
+wget -P /RNA_protocol/novo_assembly/trimming_data_agave/ -nc https://zenodo.org/records/10576137/files/Con_SRR5137659_2_P.fastq.gz
+wget -P /RNA_protocol/novo_assembly/trimming_data_agave/ -nc https://zenodo.org/records/10576137/files/Con_SRR5137661_1_P.fastq.gz
+wget -P /RNA_protocol/novo_assembly/trimming_data_agave/ -nc https://zenodo.org/records/10576137/files/Con_SRR5137661_2_P.fastq.gz
+wget -P /RNA_protocol/novo_assembly/trimming_data_agave/ -nc https://zenodo.org/records/10576137/files/Con_SRR5137662_1_P.fastq.gz
+wget -P /RNA_protocol/novo_assembly/trimming_data_agave/ -nc https://zenodo.org/records/10576137/files/Con_SRR5137662_2_P.fastq.gz
+wget -P /RNA_protocol/novo_assembly/trimming_data_agave/ -nc https://zenodo.org/records/10576137/files/Tra_SRR5137658_1_P.fastq.gz
+wget -P /RNA_protocol/novo_assembly/trimming_data_agave/ -nc https://zenodo.org/records/10576137/files/Tra_SRR5137658_2_P.fastq.gz
+wget -P /RNA_protocol/novo_assembly/trimming_data_agave/ -nc https://zenodo.org/records/10576137/files/Tra_SRR5137660_1_P.fastq.gz
+wget -P /RNA_protocol/novo_assembly/trimming_data_agave/ -nc https://zenodo.org/records/10576137/files/Tra_SRR5137660_2_P.fastq.gz
+wget -P /RNA_protocol/novo_assembly/trimming_data_agave/ -nc https://zenodo.org/records/10576137/files/Tra_SRR5137663_1_P.fastq.gz
+wget -P /RNA_protocol/novo_assembly/trimming_data_agave/ -nc https://zenodo.org/records/10576137/files/Tra_SRR5137663_2_P.fastq.gz
