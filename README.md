@@ -10,13 +10,62 @@
 - **Windows Users:** [Install Docker for Windows](https://docs.docker.com/desktop/install/windows-install/)
 - **MacOS Users:** [Install Docker for Mac](https://docs.docker.com/desktop/install/mac-install/)
 
-Once Docker is installed, you'll be able to effortlessly run the scripts in this repository and benefit from a reproducible and isolated environment. Follow the steps in our [Running](#run) section to reproduce our results.
+Once Docker is installed, you'll be able to effortlessly run the scripts in this repository and benefit from a reproducible and isolated environment. Follow the steps in the Running section to reproduce our results.
 
 
-## Running {#run}
+## Running
+
+[![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)](https://hub.docker.com/repository/docker/rafape/rna_protocol/general)
+
+First, download the Docker image for the project using the following command. This fetches the Docker image `rafape/rna_protocol` with version `2.0` from the official Docker Hub repository. The image contains all executable software packages, necessary dependencies, and configurations to run the specified protocols.
 
 
-<!-- ![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white) -->
+```bash
+docker pull rafape/rna_protocol:2.0
+```
+
+Next, clone the project repository to your local machine using the following command. This retrieves all files in the repository and places them in the current directory.
+
+```bash
+git clone https://github.com/jmvillalobos/RNA-seq-protocol.git
+```
+Then, we will work on the main directory of the proyect called `RNA-seq-protocol`. So after clonning the repository, we move to the directory with the next command:
+
+```bash
+cd RNA-seq-protocol
+```
+
+Finally, run the Docker container. Below is an example of running the `run_all_protocols.sh` script. Adjust the command based on your operating system.
+
+For Linux/MacOS users:
+
+```bash
+docker run --rm -v $(pwd)/RNA_protocol/:/RNA_protocol/ -v $(pwd)/src/:/src/ rafape/rna_protocol:2.0 /src/run_all_protocols.sh
+```
+For Windows users:
+
+```bash
+docker run --rm -v $pwd/RNA_protocol/:/RNA_protocol/ -v $pwd/src/:/src/ rafape/rna_protocol:2.0 /src/run_all_protocols.sh
+```
+
+The previous command can be used to run any of the protocols scripts separately changing the path of the bash file at the end.
+
+Alternatively, you can run the Docker container in interactive mode, allowing you to run the tools in the container, follow the protocol as outlined in the paper, run and edit scripts, navigate directories, and more. This interactive mode is particularly beneficial if you want to personally execute bioinformatic tools, tweak parameters, experiment with files, and explore the environment.
+
+To run docker container in interactive mode, use the following command:
+
+```bash
+docker run --rm -it -v $(pwd)/RNA_protocol/:/RNA_protocol/ -v $(pwd)/src/:/src/ rafape/rna_protocol:2.0
+```
+For Windows users:
+
+```bash
+docker run --rm -it -v $pwd/RNA_protocol/:/RNA_protocol/ -v $pwd/src/:/src/ rafape/rna_protocol:2.0
+```
+
+This will take you to the container enviroment where all the bioinformatic tools and system dependencies are installed.
+
+
 
 
 
@@ -126,7 +175,7 @@ Trinity --seqType fq  --samples_file samples.txt --CPU 4 --max_memory 12G
 mv trinity_out_dir.Trinity.fasta Trinity.fasta
 mv trinity_out_dir.Trinity.fasta.gene_trans_map Trinity.fasta.gene_trans_map
 ```
- > The samples file used in the command _(samples.txt)_ was manually generated and it is available in the repository [here](./RNA_protocol/novo_assembly/trinity_analysis/samples.txt)
+ > The samples file used in the command `samples.txt` was manually generated and it is available in the repository [here](./RNA_protocol/novo_assembly/trinity_analysis/samples.txt)
 
 **Step 2: Evaluating the Assembly**
 
