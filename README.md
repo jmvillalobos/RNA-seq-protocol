@@ -1,5 +1,6 @@
 # RNA-seq-protocol
- [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10537097.svg)](https://zenodo.org/DOI/10.5281/zenodo.10537096)
+ [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10576137.svg)](https://zenodo.org/records/10576137)
+
 
 
  This is the protocol for conducting RNAseq analysis in plants. This repository has been created to make it easier to follow the protocol presented in the Current Protocols journal.
@@ -48,7 +49,7 @@ docker run --rm -v $(pwd)/RNA_protocol/:/RNA_protocol/ -v $(pwd)/src/:/src/ rafa
 docker run --rm -v $pwd/RNA_protocol/:/RNA_protocol/ -v $pwd/src/:/src/ rafape/rna_protocol:2.0 /src/run_all_protocols.sh
 ```
 
-The previous command can be used to run any of the protocols scripts separately changing the path of the bash file at the end. 
+The previous command can be used to run any of the protocols scripts separately by changing the path of the bash file at the end. 
 
 ```bash
 docker run --rm -v $(pwd)/RNA_protocol/:/RNA_protocol/ -v $(pwd)/src/:/src/ rafape/rna_protocol:2.0 /src/run_protocol1.sh
