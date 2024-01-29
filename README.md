@@ -84,7 +84,6 @@ This will take you to the container enviroment where all the bioinformatic tools
 
 ## Protocol 1
 
-
 **Step 1: Data Download**
 Downloads raw RNA-seq data from the European Nucleotide Archive (ENA) related to the study of Trichoderma atroviride's Nox genes during interaction with Arabidopsis thaliana.
 
@@ -166,7 +165,9 @@ paste /RNA_protocol/quantification_featureCounts/genes.txt /RNA_protocol/quantif
 
 See [Differential Expression Script](./src/scripts/differential_expression_analysis.R)
 
-
+<p align="center">
+<img src="imgs/differential_expression_plots.jpg" alt="GitHub Logo" width="560" height="510">
+</p>
 
 ## Protocol 2
 
@@ -176,11 +177,11 @@ This protocol uses clusterProfiler to perform Over-Representation Analysis (ORA)
 
 See [Functional Enrichment Script](./src/scripts/functional_enrichment_analysis.R)
 
-
-
 <p align="center">
-<img src="imgs/protocol1and2.png" alt="GitHub Logo" width="430" height="510">
+<img src="imgs/functional_enrichment_plots.jpg" alt="GitHub Logo" width="600" height="460">
 </p>
+
+
 
 ## Protocol 3
 **De novo Assembly with Trinity**
@@ -302,6 +303,12 @@ perl /usr/local/bin/trinityrnaseq-v2.13.2/util/align_and_estimate_abundance.pl \
 --transcripts /RNA_protocol/novo_assembly/trinity_analysis/Trinity_90.fasta \
 --est_method kallisto --trinity_mode --prep_reference
 ```
+
+## Diagrams
+
+<p align="center">
+<img src="imgs/protocol1and2.png" alt="GitHub Logo" width="430" height="510">
+</p>
 
 
 <p align="center">
