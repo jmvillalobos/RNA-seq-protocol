@@ -296,7 +296,7 @@ Stats based on ALL transcript contigs:
 ```
 **Step 4: Transcript Expression Quantification with Kallisto**
 
-- Uses Salmon to estimate expression values of transcripts.
+- Uses Kallisto to estimate expression values of transcripts.
 - Creates directories for each replicate and inspected the quantification results.
 
 ```bash
