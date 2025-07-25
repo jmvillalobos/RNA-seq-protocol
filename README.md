@@ -35,9 +35,7 @@ Then, we will work on the main directory of the proyect called `RNA-seq-protocol
 ```bash
 cd RNA-seq-protocol
 ```
-```r
-cd RNA-seq-protocol
-```
+
 
 Finally, run the Docker container. Below is an example of running the `run_all_protocols.sh` script. Adjust the command based on your operating system.
 
